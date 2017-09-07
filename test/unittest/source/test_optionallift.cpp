@@ -5,7 +5,6 @@
 #include <boost/optional/optional_io.hpp>
 
 #include <string>
-#include <sstream>
 #include <cctype>
 
 
@@ -18,7 +17,7 @@ std::string strFromStr(std::string s);
 TEST_CASE("lift int (int)", "[int][int]")
 {
     typedef boost::optional<int> optint;
-    boost::function<optint (optint)> foo_ii = functional::lift(boost::function<int (int)>(&intFromInt));
+    std::function<optint (optint)> foo_ii = functional::lift(std::function<int (int)>(&intFromInt));
     optint o1;
     optint o2 = 3;
 
@@ -30,7 +29,7 @@ TEST_CASE("lift int (std::string)", "[int][std::string]")
 {
     typedef boost::optional<int> optint;
     typedef boost::optional<std::string> optstr;
-    boost::function<optint (optstr)> foo_is = functional::lift(boost::function<int (std::string)>(&intFromStr));
+    std::function<optint (optstr)> foo_is = functional::lift(std::function<int (std::string)>(&intFromStr));
     optstr o1;
     optstr o2 = std::string("711");
 
@@ -42,7 +41,7 @@ TEST_CASE("lift std::string (int)", "[std::string][int]")
 {
     typedef boost::optional<std::string> optstr;
     typedef boost::optional<int> optint;
-    boost::function<optstr (optint)> foo_si = functional::lift(boost::function<std::string (int)>(&strFromInt));
+    std::function<optstr (optint)> foo_si = functional::lift(std::function<std::string (int)>(&strFromInt));
     optint o1;
     optint o2 = 2456;
 
@@ -53,7 +52,7 @@ TEST_CASE("lift std::string (int)", "[std::string][int]")
 TEST_CASE("lift std::string (std::string)", "[std::string][std::string]")
 {
     typedef boost::optional<std::string> optstr;
-    boost::function<optstr (optstr)> foo_ss = functional::lift(boost::function<std::string (std::string)>(&strFromStr));
+    std::function<optstr (optstr)> foo_ss = functional::lift(std::function<std::string (std::string)>(&strFromStr));
     optstr o1;
     optstr o2 = std::string("abCdefG");
 
@@ -68,17 +67,12 @@ int intFromInt(int i)
 
 int intFromStr(std::string s)
 {
-    std::stringstream ss(s);
-    int i;
-    ss >> i;
-    return i;
+    return std::stoi(s);
 }
 
 std::string strFromInt(int i)
 {
-    std::stringstream ss;
-    ss << i;
-    return ss.str();
+    return std::to_string(i);
 }
 
 std::string strFromStr(std::string s)
