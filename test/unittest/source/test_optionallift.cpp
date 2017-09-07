@@ -78,9 +78,9 @@ std::string strFromInt(int i)
 std::string strFromStr(std::string s)
 {
     std::string result = s;
-    for (std::string::iterator i = result.begin(); i != result.end(); ++i)
+    for (char & c : s)
     {
-        *i = std::toupper(*i);
+        c = std::toupper(c);
     }
     return result;
 }
