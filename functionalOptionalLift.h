@@ -5,27 +5,27 @@
 #ifndef FUNCTIONAL_OPTIONAL_LIFT_H__DDK
 #define FUNCTIONAL_OPTIONAL_LIFT_H__DDK
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <functional>
 
 
 namespace functional
 {
     template<typename T, typename U>
-    std::function<boost::optional<T> (boost::optional<U>)> lift(std::function<T (U)> f);
+    std::function<std::optional<T> (std::optional<U>)> lift(std::function<T (U)> f);
 }
 
 namespace functional
 {
 ////////////////////////////////////////////////////////////////////////////////
 template<typename T, typename U>
-inline std::function<boost::optional<T> (boost::optional<U>)> lift(std::function<T (U)> f)
+inline std::function<std::optional<T> (std::optional<U>)> lift(std::function<T (U)> f)
 {
     return [f](auto arg)
     {
         return arg
-            ? boost::optional<T>(f(*arg))
-            : boost::optional<T>();
+            ? std::optional<T>(f(*arg))
+            : std::optional<T>();
     };
 }
 ////////////////////////////////////////////////////////////////////////////////
