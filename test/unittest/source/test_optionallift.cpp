@@ -17,7 +17,7 @@ std::string strFromStr(std::string s);
 TEST_CASE("lift int (int)", "[int][int]")
 {
     using optint = std::optional<int>;
-    auto foo_ii = functional::lift(std::function<int (int)>(&intFromInt));
+    auto foo_ii = functional::lift(std::function(&intFromInt));
     optint o1;
     optint o2 = 3;
 
@@ -28,7 +28,7 @@ TEST_CASE("lift int (int)", "[int][int]")
 TEST_CASE("lift int (std::string)", "[int][std::string]")
 {
     using optstr = std::optional<std::string>;
-    auto foo_is = functional::lift(std::function<int (std::string)>(&intFromStr));
+    auto foo_is = functional::lift(std::function(&intFromStr));
     optstr o1;
     optstr o2 = std::string("711");
 
@@ -39,7 +39,7 @@ TEST_CASE("lift int (std::string)", "[int][std::string]")
 TEST_CASE("lift std::string (int)", "[std::string][int]")
 {
     using optint = std::optional<int>;
-    auto foo_si = functional::lift(std::function<std::string (int)>(&strFromInt));
+    auto foo_si = functional::lift(std::function(&strFromInt));
     optint o1;
     optint o2 = 2456;
 
@@ -50,7 +50,7 @@ TEST_CASE("lift std::string (int)", "[std::string][int]")
 TEST_CASE("lift std::string (std::string)", "[std::string][std::string]")
 {
     using optstr = std::optional<std::string>;
-    auto foo_ss = functional::lift(std::function<std::string (std::string)>(&strFromStr));
+    auto foo_ss = functional::lift(std::function(&strFromStr));
     optstr o1;
     optstr o2 = std::string("abCdefG");
 
