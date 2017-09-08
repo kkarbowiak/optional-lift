@@ -21,7 +21,7 @@ namespace functional
 template<typename T, typename U>
 inline std::function<boost::optional<T> (boost::optional<U>)> lift(std::function<T (U)> f)
 {
-    return [f](boost::optional<U> arg)
+    return [f](auto arg)
     {
         return arg
             ? boost::optional<T>(f(*arg))
