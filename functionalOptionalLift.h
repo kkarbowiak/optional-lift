@@ -1,3 +1,7 @@
+/*
+    Copyright 2018 Krzysztof Karbowiak
+*/
+
 #ifndef FUNCTIONAL_OPTIONAL_LIFT_H__DDK
 #define FUNCTIONAL_OPTIONAL_LIFT_H__DDK
 
